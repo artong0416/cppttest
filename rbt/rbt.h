@@ -1,8 +1,8 @@
 /**
  * C++ ÓïÑÔ: ºìºÚÊ÷
  *
- * @author skywang
- * @date 2013/11/07
+ * @author artong
+ * @date 2015/07/13
  *http://www.cnblogs.com/skywang12345/p/3245399.html
  * http://www.cnblogs.com/skywang12345/p/3624291.html
  */
