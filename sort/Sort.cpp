@@ -67,6 +67,33 @@ void QuickSort(int s[], int l, int r)//快速排序 --交换类
     }
 }
 
+void change(int arr[], int i, int j){
+	int tmp=arr[i];
+	arr[i]=arr[j];
+	arr[j]=tmp;
+}
+
+int getpos(int a[], int l, int r){//获取基准元素的位置 
+	int key=a[r];//将最右边元素设为基准
+	int pos=l-1;//初始化位置 
+	for(int i=l; i<r; i++){
+		if(a[i]<=key){
+			pos+=1;
+			change(a,pos,i);//小于等于的放在同一边 
+		}
+	} 
+	change(a,pos+1,r);//将基准元素交换到基准位置
+	return pos+1; 
+} 
+
+void qs(int a[], int l, int r){//快排的另一种实现 
+	if(l<r){
+		int pos=getpos(a,l,r);
+		qs(a,l,pos-1);
+		qs(a,pos+1,r);
+	}
+}
+
 void SelectSort(vector<int> &arr){//直接选择排序 --选择类 
 	int index=-1; 
 	for(int i=0;i<arr.size()-1;i++){
@@ -103,7 +130,7 @@ void heapSort(int arr[],int size)//堆排序 --选择类
 {
 	for(int i=size-1;i>=0;i--)
 	{
-		heapRebuild(arr,i,size);
+		heapRebuild(arr,i,size);//建立堆 
 	}
 	int last=size-1;
 	for(int i=1;i<=size;i++,last--)
@@ -198,6 +225,14 @@ int main (){
 	int array[]={1,2,4,7,3,5,6,8};
 	QuickSort(array,0,7);
 	cout<<"快速排序"<<endl;
+	for (int i=0;i<8;i++){
+		cout<<array[i]<<" ";
+	}
+	cout<<endl;
+	
+	int array2[]={1,2,4,7,3,5,6,8};
+	qs(array2,0,7);
+	cout<<"快排解法2"<<endl;
 	for (int i=0;i<8;i++){
 		cout<<array[i]<<" ";
 	}
