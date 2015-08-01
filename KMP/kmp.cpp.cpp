@@ -28,6 +28,7 @@ void get_next(char*t, int next[ ]){
    }
  }
 }
+
 int KMP(char *s,char *t){
  int s_len=strlen(s);
  int t_len=strlen(t);
