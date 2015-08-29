@@ -187,6 +187,45 @@ void mergeSort(vector<int>data, int p, int r)//归并排序
     }
 }
 
+void merge1(int a[],int b[], int c[], int la, int lb){
+	int i=0, j=0, cnt=0;
+	while(cnt<la+lb){
+		if(a[i]<b[j]){
+			c[cnt++]=a[i++];
+		}
+		else{
+			c[cnt++]=b[j++];
+		}
+		if(i==la){//a数组已经遍历完毕 
+			while(j<lb){
+				c[cnt++]=b[j++];
+			}
+		}
+		else if(j==lb){//a数组已经遍历完毕
+			while(i<la){
+				c[cnt++]=a[i++];
+			}
+		}
+	}
+	//cout<< i << ":" << j << ":"<<cnt<< ":" << la << ":" << lb <<endl; 
+}
+
+void mergesort1(int a[], int n){
+	if(n>1){
+		int i=n/2, j=n-n/2;
+		int b[n/2],c[n-n/2];
+		for(int k=0;k<i;k++){
+			b[k]=a[k];
+		}
+		for(int k=0;k<j;k++){
+			c[k]=a[k+i];
+		}
+		mergesort1(b,i);
+		mergesort1(c,j);
+		merge1(b,c,a,i,j);
+	}
+}
+
 void prinarr(vector<int> &arr){
 	for (int i=0;i<arr.size();i++){
 		cout<<arr[i]<<" ";
@@ -234,7 +273,7 @@ int main (){
 	qs(array2,0,7);
 	cout<<"快排解法2"<<endl;
 	for (int i=0;i<8;i++){
-		cout<<array[i]<<" ";
+		cout<<array2[i]<<" ";
 	}
 	cout<<endl;
 	
@@ -255,6 +294,14 @@ int main (){
 	mergeSort(pre, 0, 7);
 	cout<<"归并排序"<<endl;
 	prinarr(pre);
+	
+	int array3[]={1,2,4,7,3,5,6,8};
+	mergesort1(array3,7);
+	cout<<"归并排序2"<<endl;
+	for (int i=0;i<8;i++){
+		cout<<array3[i]<<" ";
+	}
+	cout<<endl;
 	
 	return 0;
 }
